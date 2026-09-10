@@ -1,0 +1,233 @@
+SLITHER SMART CONTRACT SECURITY ANALYSIS
+Phase 1 - Step 3: Install and Run Slither
+
+
+1. CHECK PYTHON
+
+python --version
+
+Purpose:
+Checks whether Python is installed and displays the installed Python version.
+
+
+2. INSTALL SLITHER
+
+python -m pip install slither-analyzer
+
+Purpose:
+Installs Slither, a security analysis tool for Solidity smart contracts.
+
+
+3. CHECK SLITHER
+
+slither --version
+
+Purpose:
+Checks whether Windows can find the Slither command.
+
+Note:
+If this says that "slither" is not recognized, it usually means the Python Scripts folder is not in PATH.
+
+
+4. CHECK SLITHER THROUGH PYTHON
+
+python -m slither --version
+
+Purpose:
+Runs Slither through Python without depending on the Windows PATH configuration.
+
+
+5. VIEW THE PYTHON SCRIPTS FOLDER
+
+Get-ChildItem "C:\Users\YourUsername\AppData\Local\Python\pythoncore-3.14-64\Scripts"
+
+Purpose:
+Lists the programs installed by Python.
+
+Important files may include:
+
+slither.exe
+solc-select.exe
+solc.exe
+
+
+6. RUN SLITHER DIRECTLY FROM THE SCRIPTS FOLDER
+
+cd "C:\Users\YourUsername\AppData\Local\Python\pythoncore-3.14-64\Scripts"
+
+.\slither.exe --version
+
+Purpose:
+Runs Slither directly from the folder where slither.exe is installed.
+
+The .\ means "run the program from the current folder."
+
+
+7. CHECK SOLC-SELECT
+
+.\solc-select.exe --version
+
+Purpose:
+Checks the installed solc-select version.
+
+solc-select is used to install and switch between Solidity compiler versions.
+
+
+8. INSTALL SOLIDITY COMPILER 0.8.20
+
+.\solc-select.exe install 0.8.20
+
+Purpose:
+Downloads and installs Solidity compiler version 0.8.20.
+
+
+9. SELECT SOLIDITY COMPILER 0.8.20
+
+.\solc-select.exe use 0.8.20
+
+Purpose:
+Tells the system to use Solidity compiler version 0.8.20.
+
+
+10. CHECK THE SOLIDITY COMPILER
+
+.\solc.exe --version
+
+Purpose:
+Confirms that the Solidity compiler is installed and working.
+
+
+11. GO TO THE PROJECT FOLDER
+
+cd "C:\Users\YourUsername\Desktop\CMSC451"
+
+Purpose:
+Moves PowerShell into the CMSC 451 project folder.
+
+
+12. CREATE THE SOLIDITY FILE
+
+New-Item VulnerableBank.sol -ItemType File
+
+Purpose:
+Creates an empty Solidity file called:
+
+VulnerableBank.sol
+
+
+13. OPEN THE FILE IN VS CODE
+
+code VulnerableBank.sol
+
+Purpose:
+Opens VulnerableBank.sol in Visual Studio Code.
+
+The Solidity code can then be entered and saved in VS Code.
+
+
+14. CHECK THAT THE FILE EXISTS
+
+Get-ChildItem
+
+Purpose:
+Lists the files in the current folder.
+
+You should see:
+
+VulnerableBank.sol
+
+
+15. RUN SLITHER ON THE CONTRACT
+
+python -m slither VulnerableBank.sol
+
+Purpose:
+Analyzes the Solidity contract for potential security problems.
+
+This is the main command used for Phase 1 Step 3.
+
+
+16. RUN ONLY THE REENTRANCY DETECTOR
+
+python -m slither VulnerableBank.sol --detect reentrancy-eth
+
+Purpose:
+Tells Slither to specifically check for Ether reentrancy vulnerabilities.
+
+
+17. OPTIONAL: RUN SLITHER USING THE FULL PATH
+
+& "C:\Users\YourUsername\AppData\Local\Python\pythoncore-3.14-64\Scripts\slither.exe" VulnerableBank.sol
+
+Purpose:
+Runs Slither using its complete file path.
+
+This is useful if "slither" is not recognized by PowerShell.
+
+
+18. OPTIONAL: RUN THE REENTRANCY CHECK USING THE FULL PATH
+
+& "C:\Users\YourUsername\AppData\Local\Python\pythoncore-3.14-64\Scripts\slither.exe" VulnerableBank.sol --detect reentrancy-eth
+
+Purpose:
+Runs Slither from its full path and specifically checks for reentrancy.
+
+
+IMPORTANT COMMANDS TO REMEMBER
+
+cd "C:\Users\YourUsername\Desktop\CMSC451"
+
+Moves into the project folder.
+
+
+code VulnerableBank.sol
+
+Opens the Solidity contract in VS Code.
+
+
+python -m slither VulnerableBank.sol
+
+Runs a complete Slither security analysis.
+
+
+python -m slither VulnerableBank.sol --detect reentrancy-eth
+
+Runs a specific reentrancy security check.
+
+
+BASIC WORKFLOW
+
+1. Create Solidity contract
+2. Open it in VS Code
+3. Write/save the contract
+4. Run Slither
+5. Read the security warnings
+6. Determine why Slither reported each issue
+7. Save the results for the project
+
+
+PROJECT PIPELINE
+
+Solidity Smart Contract
+        |
+        v
+       LLM
+        |
+        v
+Candidate Vulnerability
+        |
+        v
+Slither / Other Security Tools
+        |
+        v
+Evidence Check
+        |
+        +------------------+
+        |                  |
+        v                  v
+    VERIFIED         UNCONFIRMED
+        |                  |
+        +--------+---------+
+                 |
+                 v
+         Final Audit Report
