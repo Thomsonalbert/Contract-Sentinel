@@ -1,0 +1,6 @@
+__pycache__/    ignore the folders Python generates
+.pytest_cache/  ignore the folders pytest generates
+venv/           ignore a virtual environment folder, if you make one
+.venv/          same, with a different common name
+.env            ignore a file that might hold your API key
+*.pyc           ignore any compiled Python file

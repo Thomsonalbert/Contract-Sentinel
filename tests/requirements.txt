@@ -1,0 +1,8 @@
+# Contract Sentinel dependencies
+# Install with: pip install -r requirements.txt
+
+# Gemini API client (the Interactions API needs a recent version)
+google-genai>=3.0.0
+
+# Test runner
+pytest>=8.0
